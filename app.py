@@ -130,23 +130,29 @@ if selected=='Crop Disease Detection':
 #from main import get_video_detected_result
 #import tempfile
 
-#model_path_YOLO="runs/detect/train/weights/last.pt"
-actual='sample_images/val_batch2_labels.jpg'
-pred='sample_images/val_batch2_pred.jpg'
-#model=YOLO(model_path_YOLO)
-if selected=='Weed Detection':
-    st.title('Weed Detection')
-    st.markdown('<p style="font-size:25px">You can see weed detection model results below.</p>', unsafe_allow_html=True)
-    col1,col2=st.columns(2)
+scaler=joblib.load('min_max_scaler.jbl')
+encoder=joblib.load('label_encoder.jbl')
+recommender_model=joblib.load('lgb_model.h5')
+if selected=='Crop Recommend System':
+    st.title('Crop Recommend System') 
+    col1,col2,col3=st.columns(3)
     with col1:
-            st.markdown('<p style="font-size:20px">Actual Image</p>', unsafe_allow_html=True)
-            st.image(actual,width=600,use_column_width=False,)
-            st.markdown('<style>img {border-radius: 10px;}</style>',unsafe_allow_html=True)  
-    with col2:
-            st.markdown('<p style="font-size:20px">Predicted Image</p>', unsafe_allow_html=True)
-
-            st.image(pred,width=600,use_column_width=False,)
-            st.markdown('<style>img {border-radius: 10px;}</style>',unsafe_allow_html=True)  
+        nitrogen=st.number_input(label='Input Nitrogen',min_value=0,max_value=140)
+        phosphorous=st.number_input(label='Input Phosphorous',min_value=0,max_value=145)
+        potassium=st.number_input(label='Input  Potassium',min_value=5,max_value=205)
+        temperature=st.number_input(label='Input Temperature',min_value=0.0,max_value=44.0,step=0.001)
+        humidity=st.number_input(label='Input humidity',min_value=10.0,max_value=100.0,step=0.001)
+        ph=st.number_input(label='Input Ph',min_value=0.0,max_value=10.0,step=0.001)
+        rainfall=st.number_input(label='Input Rainfall',min_value=20.0,max_value=300.0,step=0.001)
+        input_X=[[nitrogen,phosphorous,potassium,temperature,humidity,ph,rainfall]]
+        scaled_X=scaler.transform(input_X)
+        get_result=st.button('Get Result')
+        if get_result:
+            predicted=recommender_model.predict(scaled_X)
+            st.success(encoder.inverse_transform(predicted)[0])
+    with col3:
+        st.image('crop_recommend_image.png') 
+ 
 
 if selected=='Home':
      #col1,col2=st.columns(2)
