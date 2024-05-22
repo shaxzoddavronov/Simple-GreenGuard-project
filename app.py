@@ -59,7 +59,7 @@ with open(crop_json,'r',encoding='utf-8') as file:
 
 selected=option_menu(
     menu_title=None,
-    options=['Home','Crop Disease Detection','Weed Detection'],
+    options=['Home','Crop Disease Detection','Crop Recommend System'],
     icons=['house','flower1','flower2'],
     orientation='horizontal')
 
@@ -162,7 +162,7 @@ if selected=='Home':
      st.write('')
      col1,col2=st.columns(2)
      with col1:
-        title="""<h1 class="mb-2 lg:mb-4 mt-2 text-6xl text-center lg:text-left leading-10 font-bold md:text-3xl xl:text-5xl 2xl:text-6xl text-white">GreenGuard: Detecting Crop Diseases and Weeds for Healthy Harvests with AI.</h1>"""
+        title="""<h1 class="mb-2 lg:mb-4 mt-2 text-6xl text-center lg:text-left leading-10 font-bold md:text-3xl xl:text-5xl 2xl:text-6xl text-white">GreenGuard: Detecting Crop Diseases and Crop Recommend for Healthy Harvests with AI.</h1>"""
         st.markdown(title, unsafe_allow_html=True)
      some_text="""<p style='font-family: Calibri; font-size: 18px; font-weight: 300; letter-spacing: wide; margin-bottom: 6px; color: white;'> Website serves as a comprehensive tool for disease detection in plant leaves.</p>"""
      #st.markdown(some_text, unsafe_allow_html=True)
