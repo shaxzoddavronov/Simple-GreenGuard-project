@@ -182,10 +182,10 @@ if selected=='Home':
                     empower farmers and agricultural professionals with timely and accurate information''')
      with col2:
           st.write('''
-                   #### Weeds
-                   Moreover, our system will provide insights into whether the identified weed is beneficial
-                    or detrimental to agricultural ecosystems. This functionality will aid farmers in making
-                    informed decisions regarding weed management strategies.''')
+                   #### Crop Recommend System
+                   Our Crop Recommendation System uses advanced machine learning models to analyze soil and climate data,
+                   providing farmers with optimized crop suggestions tailored to their specific conditions. Maximize yields
+                   and sustainability with our cutting-edge agricultural technology.''')
      st.title('')
      st.title('')
      st.write('''
