@@ -52,6 +52,10 @@ def stream_writer(assistant_response):
         time.sleep(0.07)
         message_placeholder.markdown(full_response+"▌")
     message_placeholder.markdown(full_response) 
+    
+scaler=joblib.load('min_max_scaler.jbl')
+encoder=joblib.load('label_encoder.jbl')
+recommender_model=joblib.load('lgb_model.h5')
 
 crop_json='eco.json'
 with open(crop_json,'r',encoding='utf-8') as file:
@@ -129,9 +133,7 @@ if selected=='Crop Disease Detection':
 #from main import get_video_detected_result
 #import tempfile
 
-scaler=joblib.load('min_max_scaler.jbl')
-encoder=joblib.load('label_encoder.jbl')
-recommender_model=joblib.load('lgb_model.h5')
+
 if selected=='Crop Recommend System':
     st.title('Crop Recommend System') 
     col1,col2,col3=st.columns(3)
